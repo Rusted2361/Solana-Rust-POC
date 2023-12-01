@@ -1,0 +1,29 @@
+hamza_sajid@DESKTOP-HQKDS9G:/mnt/c/Users/HAMZA/Documents/BlockChain/stake_ft/staking-tokens-contract$ spl-token create-token --decimals 0
+Creating token J5pJP7WCtTFUS675x1QFewGtRhazbbNbxXY1E3cdZUiH
+
+Signature: 4jp4bncHbu2na91eVjm2VJmvzdRhy9LGecHEtfgpgp8w2Z1WU6qQd5sqLborVL4MDG5rQwtMj1TZwnxrBfiUqfe1
+---------------------
+hamza_sajid@DESKTOP-HQKDS9G:/mnt/c/Users/HAMZA/Documents/BlockChain/stake_ft/staking-tokens-contract$ spl-token create-account J5pJP7WCtTFUS675x1QFewGtRhazbbNbxXY1E3cdZUiH
+Creating account 4DafqggAFY9A3G3CfX8pWEcqrMrAomvuMYeTUx7AenwG
+
+Signature: 3woZ7MYrbueCkojMSFAsXRd1mVFg2smLCXvbiqERchnZ5kNdzmRm3nEveVk4ZpeYBzCWnkLqvggtpD6aT5aZPJ3U
+---------------------
+hamza_sajid@DESKTOP-HQKDS9G:/mnt/c/Users/HAMZA/Documents/BlockChain/stake_ft/staking-tokens-contract$ spl-token mint J5pJP7WCtTFUS675x1QFewGtRhazbbNbxXY1E3cdZUiH 10000
+Minting 10000 tokens
+  Token: J5pJP7WCtTFUS675x1QFewGtRhazbbNbxXY1E3cdZUiH
+  Recipient: 4DafqggAFY9A3G3CfX8pWEcqrMrAomvuMYeTUx7AenwG
+
+Signature: 4ivxfJUryquAMQccmYf5JAaWQbCPMkjArNuXSgLP2HeBk9i6VHFg2FNbqyS8e9KV4zfzYWiEMuiFt2AMoGrzrbjd
+---------------------
+C:\Users\HAMZA\Documents\BlockChain\stake_ft\staking-tokens-client\target\debug>staking-tokens-client.exe generate_vault_address -e dev -s id.json --min_lock_period 60 --time_apy 5 --apy_inc_period 30 --apy_per_amount 5 --tier_amount 5000
+vault account generated: 5QEUuEWsXjMdA2C6VZWAAz3cFX6ibkqL2vE2MAPZdGxj
+tx id: 3jC8mbFhtCq2qKPmcUW7wfGVsAQ9Z6e2PbhoMTAcoWJKaysisE9UCuFgHmQftqMWMCm8uEkrjCufLdZ9fexwMNT9
+--------------------
+C:\Users\HAMZA\Documents\BlockChain\stake_ft\staking-tokens-client\target\debug>spl-token transfer J5pJP7WCtTFUS675x1QFewGtRhazbbNbxXY1E3cdZUiH 5000 HRqXXua5SSsr1C7pBWhtLxjD9HcreNd4ZTKJD7em7mtP --fund-recipient
+Transfer 5000 tokens
+  Sender: 4DafqggAFY9A3G3CfX8pWEcqrMrAomvuMYeTUx7AenwG
+  Recipient: HRqXXua5SSsr1C7pBWhtLxjD9HcreNd4ZTKJD7em7mtP
+  Recipient associated token account: 79GABEGuAmgzrutsNX5eSKmAw3vNLECdmPmaWVDGVBCs
+  Funding recipient: 79GABEGuAmgzrutsNX5eSKmAw3vNLECdmPmaWVDGVBCs (0.00203928 SOL)
+
+Signature: 5uxkYQmqRdc1xhGP9P6LHLN2sbGyLySf3tJQ3qEpDeFEdEm8LsZD2Bu2P6m7TLqhx8ov2TY5JBUbtCPyan8PFY9q
