@@ -36,7 +36,7 @@ This repository contains the smart contract and client-side tools for creating a
 
 2. **Deploy Contract:**
     ```bash
-    solana program deploy /ft_staking/ft_stake_contract/target/deploy/staking.so
+    solana program deploy target/deploy/SplTokenSolana.so 
     ```
 
 ## Client Side

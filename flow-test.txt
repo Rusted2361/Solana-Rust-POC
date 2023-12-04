@@ -1,0 +1,32 @@
+Creating token 9EXqHNEpmujXDtvP12QSiQDcAeCqa8KNGgTNGqTP3t9C
+
+Address:  9EXqHNEpmujXDtvP12QSiQDcAeCqa8KNGgTNGqTP3t9C
+Decimals:  0
+
+Signature: 2HdZiaMoxJxMg8qdr8UBo7aZEWNDwGfpUWKZCevD2uSwRVV7C95rGEqHXBXgDgycKJCtK476D8JS2FFoFepgFXGp
+
+-----------------------------------------------------------
+
+macbookpro@MP15-HamzaS-BE-216 ft_contract % spl-token create-account 9EXqHNEpmujXDtvP12QSiQDcAeCqa8KNGgTNGqTP3t9C      
+Creating account CoPWPcfjj8HgtYNgDXeHgorx1uMhGJpRCFU25tPRopcL
+
+Signature: d8VBNTtRQzLVrKC2XBwPLCGxbKromLjfvamo2oUkpdkxxKQ1zSkHdj2hDrRByMwpxHY1KRQM6EeYXHCkgJ5isZt
+
+-----------------------------------------------------------
+
+macbookpro@MP15-HamzaS-BE-216 ft_contract % spl-token mint 9EXqHNEpmujXDtvP12QSiQDcAeCqa8KNGgTNGqTP3t9C 10000
+Minting 10000 tokens
+  Token: 9EXqHNEpmujXDtvP12QSiQDcAeCqa8KNGgTNGqTP3t9C
+  Recipient: CoPWPcfjj8HgtYNgDXeHgorx1uMhGJpRCFU25tPRopcL
+
+Signature: 4HoRV98ogMvQt7kqUvLbUpF1pwETxoLHxzXfotXAK2iYuSS6B4qewPcyuWxXooRHVyxZkqxhqAgPmAJSZ6N6WxK6
+
+-----------------------------------------------------------
+
+macbookpro@MP15-HamzaS-BE-216 ft_contract % solana program deploy target/deploy/SplTokenSolana.so 
+Program Id: 
+
+-----------------------------------------------------------
+
+Replaced RewardMint "9EXqHNEpmujXDtvP12QSiQDcAeCqa8KNGgTNGqTP3t9C"
+Replaced ProgramID "HJEXVaKmiRNpa6jbyiKCHQ2EUH6rW1u1a5RC6XacLf4y"
