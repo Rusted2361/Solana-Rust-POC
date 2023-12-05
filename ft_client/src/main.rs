@@ -116,8 +116,8 @@ fn main() {
         )
         .get_matches();
 
-    let program_id = "EJMGTrytpzA7K4u1qVgPpfBHWUTbwWFJeqZiSWJEkgmQ".parse::<Pubkey>().unwrap();
-    let reward_mint = "AFBVFKJ6SZaNC2dgxaR2UyhZ91exHF7NHgwhJNp1nqHe".parse::<Pubkey>().unwrap();
+    let program_id = "8jPy71sq7e4sueLqy4QtzRfXhqHwahEjpr1fu9aMn3HW".parse::<Pubkey>().unwrap();
+    let reward_mint = "9EXqHNEpmujXDtvP12QSiQDcAeCqa8KNGgTNGqTP3t9C".parse::<Pubkey>().unwrap();
 
     if let Some(matches) = matches.subcommand_matches("unstake") {
         let url = match matches.value_of("env"){

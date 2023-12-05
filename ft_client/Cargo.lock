@@ -3342,22 +3342,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "staking-tokens-client"
-version = "0.1.0"
-dependencies = [
- "borsh",
- "borsh-derive",
- "clap 2.34.0",
- "serde",
- "serde_json",
- "solana-client",
- "solana-sdk",
- "spl-associated-token-account",
- "spl-token",
- "spl-token-metadata",
-]
-
-[[package]]
 name = "strsim"
 version = "0.8.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -3538,6 +3522,22 @@ name = "tinyvec_macros"
 version = "0.1.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "cda74da7e1a664f795bb1f8a87ec406fb89a02522cf6e50620d016add6dbbf5c"
+
+[[package]]
+name = "tokens-client"
+version = "0.1.0"
+dependencies = [
+ "borsh",
+ "borsh-derive",
+ "clap 2.34.0",
+ "serde",
+ "serde_json",
+ "solana-client",
+ "solana-sdk",
+ "spl-associated-token-account",
+ "spl-token",
+ "spl-token-metadata",
+]
 
 [[package]]
 name = "tokio"

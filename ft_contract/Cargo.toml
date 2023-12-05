@@ -1,8 +1,8 @@
 [package]
-name = "staking-tokens-contract"
+name = "Token-contract"
 version = "0.0.1"
-description = "Staking tokens"
-authors = ["Rusty 0ne <4fun.and.job.offers@gmail.com>"]
+description = "Token-contract"
+authors = ["Rusted2361 hamzasajid4040@gmail.com"]
 license = "Proprietary"
 edition = "2018"
 
@@ -23,5 +23,5 @@ solana-program-test = "=1.8.0"
 solana-sdk = "=1.8.0"
 
 [lib]
-name = "staking"
+name = "Tokens_contract"
 crate-type = ["cdylib", "lib"]

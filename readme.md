@@ -18,7 +18,10 @@ This repository contains the smart contract and client-side tools for creating a
     ```bash
     spl-token mint <token>
     ```
-
+4. **Check Tokens balance:**
+    ```bash
+    spl-token balance <token>
+    ```
 ## Contract Configuration
 
 1. **Admin Key Pair:**
@@ -49,8 +52,10 @@ This repository contains the smart contract and client-side tools for creating a
 
     a. **Generate Vault Address (with Admin Key Pair):**
         ```bash
-        staking-tokens-client generate_vault_address -e dev -s <keypair.json> --min_lock_period <seconds>
+        ./target/debug/tokens-client generate_vault_address -e dev -s <keypair.json> --min_lock_period <seconds>
         ```
+        i.e
+        ./target/debug/tokens-client generate_vault_address -e dev -s devnet-test.json --min_lock_period 1
 
     b. **Stake Tokens:**
         ```bash

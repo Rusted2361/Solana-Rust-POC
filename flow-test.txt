@@ -29,4 +29,4 @@ Program Id:
 -----------------------------------------------------------
 
 Replaced RewardMint "9EXqHNEpmujXDtvP12QSiQDcAeCqa8KNGgTNGqTP3t9C"
-Replaced ProgramID "HJEXVaKmiRNpa6jbyiKCHQ2EUH6rW1u1a5RC6XacLf4y"
+Replaced ProgramID "8jPy71sq7e4sueLqy4QtzRfXhqHwahEjpr1fu9aMn3HW"
