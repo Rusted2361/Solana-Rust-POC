@@ -53,7 +53,7 @@ fn main() {
                 .takes_value(true)
             )
         )
-        .subcommand(SubCommand::with_name("stake")
+        .subcommand(SubCommand::with_name("pay_rent")
             .arg(Arg::with_name("sign")
                 .short("s")
                 .long("sign")
@@ -67,7 +67,7 @@ fn main() {
                 .takes_value(true)
             )
         )
-        .subcommand(SubCommand::with_name("unstake")
+        .subcommand(SubCommand::with_name("divide_rent")
             .arg(Arg::with_name("sign")
                 .short("s")
                 .long("sign")
@@ -98,7 +98,7 @@ fn main() {
     let program_id = "8jPy71sq7e4sueLqy4QtzRfXhqHwahEjpr1fu9aMn3HW".parse::<Pubkey>().unwrap();
     let reward_mint = "H9qtPoMgHYoyjmKxPnQDdxZiL4fuNijHaGnE3sMCPbdV".parse::<Pubkey>().unwrap();
     
-    if let Some(matches) = matches.subcommand_matches("unstake") {
+    if let Some(matches) = matches.subcommand_matches("divide_rent") {
         let url = match matches.value_of("env"){
             Some("dev")=>"https://api.devnet.solana.com",
             _=>"https://api.mainnet-beta.solana.com",
@@ -155,7 +155,7 @@ fn main() {
     }
     }
 
-    if let Some(matches) = matches.subcommand_matches("stake") {
+    if let Some(matches) = matches.subcommand_matches("pay_rent") {
         let url = match matches.value_of("env"){
             Some("dev")=>"https://api.devnet.solana.com",
             _=>"https://api.mainnet-beta.solana.com",
