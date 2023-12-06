@@ -1,6 +1,6 @@
 # Solana Token Contract
 
-This repository contains the smart contract and client-side tools for creating and staking tokens in a staking vault.
+This repository contains the smart contract and client-side tools for creating and trasnferring tokens in a contract vault.
 
 ## Token Creation
 
@@ -60,11 +60,6 @@ This repository contains the smart contract and client-side tools for creating a
     b. **Stake Tokens:**
         ```bash
         staking-tokens-client stake -s <keypair.json> -e dev -a <token-amount> -l 2
-        ```
-
-    c. **Unstake Tokens:**
-        ```bash
-        staking-tokens-client unstake -s <keypair.json> -e dev
         ```
 
 **Note:** Replace placeholders such as `<token>`, `<keypair.json>`, `<token-amount>`, etc., with actual values.

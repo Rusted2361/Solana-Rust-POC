@@ -20,17 +20,13 @@ use solana_sdk::borsh::try_from_slice_unchecked;
 
 #[derive(Clone, Debug, PartialEq, BorshDeserialize, BorshSerialize, BorshSchema)]
 enum StakeInstruction{
-    GenerateVault{
-        #[allow(dead_code)]
-        min_lock_period:u64,
-    },
+    GenerateVault,
     Stake{
         #[allow(dead_code)]
         amount:u64,
         #[allow(dead_code)]
         lock_period:u64,
     },
-    Unstake,
 }
 
 #[derive(Clone, Debug, PartialEq, BorshDeserialize, BorshSerialize, BorshSchema)]
@@ -68,11 +64,6 @@ fn main() {
                 .required(false)
                 .takes_value(true)
             )
-            .arg(Arg::with_name("min_lock_period")
-                .long("min_lock_period")
-                .required(true)
-                .takes_value(true)
-            )
         )
         .subcommand(SubCommand::with_name("stake")
             .arg(Arg::with_name("sign")
@@ -100,71 +91,10 @@ fn main() {
                 .takes_value(true)
             )
         )
-        .subcommand(SubCommand::with_name("unstake")
-            .arg(Arg::with_name("sign")
-                .short("s")
-                .long("sign")
-                .required(true)
-                .takes_value(true)
-            )
-            .arg(Arg::with_name("env")
-                .short("e")
-                .long("env")
-                .required(false)
-                .takes_value(true)
-            )
-        )
         .get_matches();
 
     let program_id = "8jPy71sq7e4sueLqy4QtzRfXhqHwahEjpr1fu9aMn3HW".parse::<Pubkey>().unwrap();
     let reward_mint = "9EXqHNEpmujXDtvP12QSiQDcAeCqa8KNGgTNGqTP3t9C".parse::<Pubkey>().unwrap();
-
-    if let Some(matches) = matches.subcommand_matches("unstake") {
-        let url = match matches.value_of("env"){
-            Some("dev")=>"https://api.devnet.solana.com",
-            _=>"https://api.mainnet-beta.solana.com",
-        };
-        let client = RpcClient::new_with_commitment(url.to_string(),CommitmentConfig::confirmed());
-        
-        let wallet_path = matches.value_of("sign").unwrap();
-        let wallet_keypair = read_keypair_file(wallet_path).expect("Can't open file-wallet");
-        let wallet_pubkey = wallet_keypair.pubkey();
-
-        let ( vault, _vault_bump ) = Pubkey::find_program_address(&[&"vault".as_bytes()], &program_id);
-        let destanation = spl_associated_token_account::get_associated_token_address(&wallet_pubkey, &reward_mint);
-        let source = spl_associated_token_account::get_associated_token_address(&vault, &reward_mint);
-        let reward_destanation = spl_associated_token_account::get_associated_token_address(&wallet_pubkey, &reward_mint);
-        // let reward_source = spl_associated_token_account::get_associated_token_address(&vault, &reward_mint);
-        let ( stake_data, _ ) = Pubkey::find_program_address(&[&wallet_pubkey.to_bytes(),&reward_mint.to_bytes()], &program_id);
-
-
-        let instarctions = vec![Instruction::new_with_borsh(
-            program_id,
-            &StakeInstruction::Unstake,
-            vec![
-                AccountMeta::new(wallet_pubkey, true),
-                AccountMeta::new_readonly(system_program::id(), false),
-                AccountMeta::new_readonly(reward_mint, false),
-                AccountMeta::new_readonly(spl_token::id(), false),
-                AccountMeta::new_readonly("SysvarRent111111111111111111111111111111111".parse::<Pubkey>().unwrap(), false),
-                AccountMeta::new_readonly("ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL".parse::<Pubkey>().unwrap(), false),
-                AccountMeta::new(stake_data, false),
-                AccountMeta::new_readonly(vault, false),
-                AccountMeta::new(reward_destanation, false),
-                // AccountMeta::new(reward_source, false),
-                AccountMeta::new(destanation, false),
-                AccountMeta::new(source, false),
-                // AccountMeta::new_readonly(metadata, false),
-                // AccountMeta::new(wl_data_address, false),
-                AccountMeta::new(reward_mint, false),
-            ],
-        )];
-        let mut tx = Transaction::new_with_payer(&instarctions, Some(&wallet_pubkey));
-        let recent_blockhash = client.get_latest_blockhash().expect("Can't get blockhash");
-        tx.sign(&vec![&wallet_keypair], recent_blockhash);
-        let id = client.send_transaction(&tx).expect("Transaction failed.");
-        println!("tx id: {:?}", id);
-    }
 
     if let Some(matches) = matches.subcommand_matches("stake") {
         let url = match matches.value_of("env"){
@@ -230,13 +160,9 @@ fn main() {
 
         let (vault_pda, _) = Pubkey::find_program_address(&["vault".as_bytes()], &program_id);
 
-        let min_lock_period = matches.value_of("min_lock_period").unwrap().parse::<u64>().unwrap();
-
         let instarctions = vec![Instruction::new_with_borsh(
             program_id,
-            &StakeInstruction::GenerateVault{
-                min_lock_period,
-            },
+            &StakeInstruction::GenerateVault,
             vec![
                 AccountMeta::new(wallet_pubkey, true),
                 AccountMeta::new(system_program::id(), false),

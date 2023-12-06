@@ -22,10 +22,7 @@ entrypoint!(process_instruction);
 
 #[derive(Clone, Debug, PartialEq, BorshDeserialize, BorshSerialize, BorshSchema)]
 enum StakeInstruction{
-    GenerateVault{
-        #[allow(dead_code)]
-        min_lock_period:u64,
-    }
+    GenerateVault
 }
 
 #[derive(Clone, Debug, PartialEq, BorshDeserialize, BorshSerialize, BorshSchema)]
@@ -35,12 +32,6 @@ struct StakeData{
     timestamp: u64,
     amount: u64,
     active: bool,
-}
-
-
-#[derive(Clone, Debug, PartialEq, BorshDeserialize, BorshSerialize, BorshSchema)]
-struct RateData{
-    min_lock_period:u64,
 }
 
 // Program entrypoint's implementation
@@ -58,9 +49,7 @@ pub fn process_instruction(
 
     match instruction{
 
-        StakeInstruction::GenerateVault{
-            min_lock_period,
-        }=>{
+        StakeInstruction::GenerateVault=>{
             let payer = next_account_info(accounts_iter)?;
             let system_program = next_account_info(accounts_iter)?;
             let pda = next_account_info(accounts_iter)?;
@@ -115,10 +104,6 @@ pub fn process_instruction(
                     &[&[vault_word.as_bytes(), &[vault_bump_seed]]],
                 )?;
             }
-            let rate_struct = RateData{
-                min_lock_period,
-            };
-            rate_struct.serialize(&mut &mut pda.data.borrow_mut()[..])?;
         },
     };
         
