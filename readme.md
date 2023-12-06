@@ -57,9 +57,13 @@ This repository contains the smart contract and client-side tools for creating a
         i.e
         ./target/debug/tokens-client generate_vault_address -e dev -s devnet-test.json --min_lock_period 1
 
-    b. **Stake Tokens:**
+    b. **Pay Rent:**
         ```bash
-        staking-tokens-client stake -s <keypair.json> -e dev -a <token-amount> -l 2
+        ./target/debug/tokens-client stake -s <keypair.json> -e dev -a <token-amount> -l 2
+        ```
+     b. **Divide Rent:**
+        ```bash
+        ./target/debug/tokens-client unstake -e dev -s devnet-test.json --token_balance 2 --json owner_list.json
         ```
 
 **Note:** Replace placeholders such as `<token>`, `<keypair.json>`, `<token-amount>`, etc., with actual values.

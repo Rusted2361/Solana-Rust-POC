@@ -36,3 +36,31 @@ Replaced ProgramID "8jPy71sq7e4sueLqy4QtzRfXhqHwahEjpr1fu9aMn3HW"
 ./target/debug/tokens-client generate_vault_address -e dev -s devnet-test.json --min_lock_period 1
 vault account generated: AAyKnbPiNCu5VufG951bc4RQcZSw694afd5axKkSu83R
 tx id: 2NhwixToEvxvTdcYhmfckXnHUQxTAudGG8d3vYyJu3Jf1RhoNZzpdtokQxmdzYQqUk2sw8TbJbzMBVFwyj1r2Pvz
+
+
+with decimals 9
+================
+macbookpro@MP15-HamzaS-BE-216 ft_client % spl-token create-token --decimals 9
+Creating token H9qtPoMgHYoyjmKxPnQDdxZiL4fuNijHaGnE3sMCPbdV under program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA
+
+Address:  H9qtPoMgHYoyjmKxPnQDdxZiL4fuNijHaGnE3sMCPbdV
+Decimals:  9
+
+Signature: 5qLFsd94Sgmi5Xe7SWqv7JSRPzqF66j6kSHRkFSsafQLi8A5EhNSo3vPbxB1SMU17Vm4QxKiXB9jg7wgNvCeYFhw
+
+-----------------------------------------------------------
+macbookpro@MP15-HamzaS-BE-216 ft_client % spl-token create-account H9qtPoMgHYoyjmKxPnQDdxZiL4fuNijHaGnE3sMCPbdV
+Creating account 5tSVeE1oKpUUMZ5pVpdGM7GenJ922zijVJErAVvkkfch
+
+Signature: 3dGv4oiTtYCGYjNUrsw1CXkf8EADD1rVr3A8tbiSKKmC9ZGaQ2bEVEvrKmXQk4rKApK66g8ZowHsAXQK76F12giY
+
+-----------------------------------------------------------
+
+macbookpro@MP15-HamzaS-BE-216 ft_client % spl-token mint H9qtPoMgHYoyjmKxPnQDdxZiL4fuNijHaGnE3sMCPbdV 1000000
+Minting 1000000 tokens
+  Token: H9qtPoMgHYoyjmKxPnQDdxZiL4fuNijHaGnE3sMCPbdV
+  Recipient: 5tSVeE1oKpUUMZ5pVpdGM7GenJ922zijVJErAVvkkfch
+
+Signature: 5mGnpYWAUhKrCiKVZm7ZXVuoc6ACXrCNkczr9Su5tyDx8M5ewyzN3jpig14qnLTgQnrssFrzf97GyywUXW8w8Dn7
+-----------------------------------------------------------
+
