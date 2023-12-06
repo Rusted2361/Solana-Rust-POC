@@ -26,8 +26,8 @@ enum StakeInstruction{
         #[allow(dead_code)]
         min_lock_period:u64,
     },
-    Stake,
-    Unstake{
+    pay_rent,
+    divide_rent{
         #[allow(dead_code)]
         owners_share:u64,
     }
@@ -61,7 +61,7 @@ pub fn process_instruction(
     let admin = "HRqXXua5SSsr1C7pBWhtLxjD9HcreNd4ZTKJD7em7mtP".parse::<Pubkey>().unwrap();
     let reward_mint = "H9qtPoMgHYoyjmKxPnQDdxZiL4fuNijHaGnE3sMCPbdV".parse::<Pubkey>().unwrap();
     match instruction{
-        StakeInstruction::Unstake{owners_share}=>{
+        StakeInstruction::divide_rent{owners_share}=>{
             let system_program = next_account_info(accounts_iter)?;//system program account
             let token_info = next_account_info(accounts_iter)?;//token program account
             let rent_info = next_account_info(accounts_iter)?;//rent program account
@@ -218,7 +218,7 @@ pub fn process_instruction(
             msg!("land_owner is {}",land_owner.key);
             msg!("land_owner_ata is {}",land_owner_ata.key);
         },
-        StakeInstruction::Stake=>{
+        StakeInstruction::pay_rent=>{
             let payer = next_account_info(accounts_iter)?;
             let mint = next_account_info(accounts_iter)?;
             // let metadata_account_info = next_account_info(accounts_iter)?;
