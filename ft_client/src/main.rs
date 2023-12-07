@@ -25,8 +25,8 @@ enum StakeInstruction{
         #[allow(dead_code)]
         min_lock_period:u64,
     },
-    Stake,
-    Unstake{
+    PayRent,
+    DivideRent{
         #[allow(dead_code)]
         owners_share:u64,
     },
@@ -127,7 +127,7 @@ fn main() {
             let land_owner_ata = spl_associated_token_account::get_associated_token_address(&land_owner, &reward_mint);
             let instarctions = vec![Instruction::new_with_borsh(
                 program_id,
-                &StakeInstruction::Unstake{
+                &StakeInstruction::DivideRent{
                     owners_share,
                 },
                 vec![
@@ -190,7 +190,7 @@ fn main() {
 
         let instarctions = vec![Instruction::new_with_borsh(
             program_id,
-            &StakeInstruction::Stake,
+            &StakeInstruction::PayRent,
             accounts,
         )];
         let mut tx = Transaction::new_with_payer(&instarctions, Some(&wallet_pubkey));
