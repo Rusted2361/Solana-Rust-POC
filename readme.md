@@ -27,7 +27,7 @@ This repository contains the smart contract and client-side tools for creating a
 1. **Admin Key Pair:**
     - Add your key pair public key as the controller of the vault generation in the contract.
 
-2. **Reward Mint:**
+2. **USD Token:**
     - Add the token that the contract will deduct from users and distribute among land owners.
 
 ## Deploy Contract
@@ -46,7 +46,7 @@ This repository contains the smart contract and client-side tools for creating a
 
 1. **Edit and Compile Client Side:**
     - Change the `program_id`.
-    - Change the `reward_mint`.
+    - Change the `usd_token`.
 
 2. **Vault Generation (Client Side):**
 
