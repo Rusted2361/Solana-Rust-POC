@@ -88,7 +88,7 @@ fn main() {
         .get_matches();
 
     let program_id = "8jPy71sq7e4sueLqy4QtzRfXhqHwahEjpr1fu9aMn3HW".parse::<Pubkey>().unwrap();
-    let reward_mint = "H9qtPoMgHYoyjmKxPnQDdxZiL4fuNijHaGnE3sMCPbdV".parse::<Pubkey>().unwrap();
+    let usd_token = "H9qtPoMgHYoyjmKxPnQDdxZiL4fuNijHaGnE3sMCPbdV".parse::<Pubkey>().unwrap();
     
     if let Some(matches) = matches.subcommand_matches("divide_rent") {
         let url = match matches.value_of("env"){
@@ -101,11 +101,11 @@ fn main() {
         let wallet_pubkey = wallet_keypair.pubkey();
 
 
-        let destanation = spl_associated_token_account::get_associated_token_address(&wallet_pubkey, &reward_mint);
+        let destanation = spl_associated_token_account::get_associated_token_address(&wallet_pubkey, &usd_token);
         let ( vault, _vault_bump ) = Pubkey::find_program_address(&[&"vault".as_bytes()], &program_id);
-        let source = spl_associated_token_account::get_associated_token_address(&vault, &reward_mint);
-        // let reward_source = spl_associated_token_account::get_associated_token_address(&vault, &reward_mint);
-        let ( stake_data, _ ) = Pubkey::find_program_address(&[&wallet_pubkey.to_bytes(),&reward_mint.to_bytes()], &program_id);
+        let source = spl_associated_token_account::get_associated_token_address(&vault, &usd_token);
+        // let reward_source = spl_associated_token_account::get_associated_token_address(&vault, &usd_token);
+        let ( stake_data, _ ) = Pubkey::find_program_address(&[&wallet_pubkey.to_bytes(),&usd_token.to_bytes()], &program_id);
         //let token_balance = matches.value_of("token_balance").unwrap().parse::<u64>().unwrap()*1000000000;
         let config_path = matches.value_of("json").unwrap();
         let config = fs::read_to_string(&config_path).expect("Unable to read file"); 
@@ -116,7 +116,7 @@ fn main() {
         println!("owners_share: {}", owners_share);
         for (i,address_str) in whitelist.iter().enumerate(){
             let land_owner = address_str.parse::<Pubkey>().expect("Wrong json address format");
-            let land_owner_ata = spl_associated_token_account::get_associated_token_address(&land_owner, &reward_mint);
+            let land_owner_ata = spl_associated_token_account::get_associated_token_address(&land_owner, &usd_token);
             let instarctions = vec![Instruction::new_with_borsh(
                 program_id,
                 &StakeInstruction::DivideRent{
@@ -127,7 +127,7 @@ fn main() {
                     AccountMeta::new_readonly(spl_token::id(), false),
                     AccountMeta::new_readonly("SysvarRent111111111111111111111111111111111".parse::<Pubkey>().unwrap(), false),
                     AccountMeta::new_readonly("ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL".parse::<Pubkey>().unwrap(), false),
-                    AccountMeta::new_readonly(reward_mint, false),
+                    AccountMeta::new_readonly(usd_token, false),
                     // AccountMeta::new(stake_data, false),
                     
                     AccountMeta::new_readonly(land_owner, false),//land_owner pubkey
@@ -158,14 +158,14 @@ fn main() {
         let wallet_keypair = read_keypair_file(wallet_path).expect("Can't open file-wallet");
         let wallet_pubkey = wallet_keypair.pubkey();
 
-        let ( stake_data, _stake_data_bump ) = Pubkey::find_program_address(&[&wallet_pubkey.to_bytes(),&reward_mint.to_bytes()], &program_id);
+        let ( stake_data, _stake_data_bump ) = Pubkey::find_program_address(&[&wallet_pubkey.to_bytes(),&usd_token.to_bytes()], &program_id);
         let (vault_pda, _) = Pubkey::find_program_address(&["vault".as_bytes()], &program_id);
-        let source = spl_associated_token_account::get_associated_token_address(&wallet_pubkey, &reward_mint);
-        let destanation = spl_associated_token_account::get_associated_token_address(&vault_pda, &reward_mint);
+        let source = spl_associated_token_account::get_associated_token_address(&wallet_pubkey, &usd_token);
+        let destanation = spl_associated_token_account::get_associated_token_address(&vault_pda, &usd_token);
 
         let accounts = vec![
             AccountMeta::new(wallet_pubkey, true),
-            AccountMeta::new_readonly(reward_mint, false),
+            AccountMeta::new_readonly(usd_token, false),
 
             AccountMeta::new_readonly(vault_pda, false),
             AccountMeta::new(source, false),

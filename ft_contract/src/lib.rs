@@ -56,7 +56,7 @@ pub fn process_instruction(
     let vault_word = "vault";
 
     let admin = "HRqXXua5SSsr1C7pBWhtLxjD9HcreNd4ZTKJD7em7mtP".parse::<Pubkey>().unwrap();
-    let reward_mint = "H9qtPoMgHYoyjmKxPnQDdxZiL4fuNijHaGnE3sMCPbdV".parse::<Pubkey>().unwrap();
+    let usd_token = "H9qtPoMgHYoyjmKxPnQDdxZiL4fuNijHaGnE3sMCPbdV".parse::<Pubkey>().unwrap();
     match instruction{
         StakeInstruction::divide_rent{owners_share}=>{
             let system_program = next_account_info(accounts_iter)?;//system program account
@@ -75,12 +75,12 @@ pub fn process_instruction(
 
             //let ( stake_address, _stake_bump ) = Pubkey::find_program_address(&[&payer.key.to_bytes(),&mint_info.key.to_bytes()], &program_id);
             let ( vault_address, vault_bump ) = Pubkey::find_program_address(&[&vault_word.as_bytes()], &program_id);
-            //let payer_reward_holder = spl_associated_token_account::get_associated_token_address(payer.key, &reward_mint);
+            //let payer_reward_holder = spl_associated_token_account::get_associated_token_address(payer.key, &usd_token);
             let payer_mint_holder = spl_associated_token_account::get_associated_token_address(payer.key, mint_info.key);
             let vault_mint_holder = spl_associated_token_account::get_associated_token_address(vault_info.key, mint_info.key);
 
 
-            if *mint_info.key!=reward_mint{
+            if *mint_info.key!=usd_token{
                 //unauthorized access
                 return Err(ProgramError::Custom(0x333));
             }
@@ -116,7 +116,7 @@ pub fn process_instruction(
             }
 
 
-            if reward_mint!=*mint_info.key{
+            if usd_token!=*mint_info.key{
                 //wrong mint_info
                 return Err(ProgramError::Custom(0x67));
             }
@@ -234,7 +234,7 @@ pub fn process_instruction(
 
             let clock = Clock::get()?;
 
-            if *mint.key!=reward_mint{
+            if *mint.key!=usd_token{
                 //wrong mint
                 return Err(ProgramError::Custom(0x800));
             }
@@ -363,7 +363,7 @@ pub fn process_instruction(
                     destination.key,
                     payer.key,
                     &[],
-                    10000000000,
+                    1000000000,
                 )?,
                 &[
                     source.clone(),
