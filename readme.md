@@ -6,7 +6,7 @@ This repository contains the smart contract and client-side tools for creating a
 
 1. **Create Token:**
     ```bash
-    spl-token create-token --decimals
+    spl-token create-token --decimals 9
     ```
 
 2. **Create Token Account:**
@@ -28,7 +28,7 @@ This repository contains the smart contract and client-side tools for creating a
     - Add your key pair public key as the controller of the vault generation in the contract.
 
 2. **Reward Mint:**
-    - Add the token that the contract holds and gives as a reward.
+    - Add the token that the contract will deduct from users and distribute among land owners.
 
 ## Deploy Contract
 
@@ -39,7 +39,7 @@ This repository contains the smart contract and client-side tools for creating a
 
 2. **Deploy Contract:**
     ```bash
-    solana program deploy target/deploy/SplTokenSolana.so 
+    solana program deploy target/deploy/Tokens_contract.so
     ```
 
 ## Client Side
@@ -52,19 +52,24 @@ This repository contains the smart contract and client-side tools for creating a
 
     a. **Generate Vault Address (with Admin Key Pair):**
         ```bash
-        ./target/debug/tokens-client generate_vault_address -e dev -s <keypair.json> --min_lock_period <seconds>
+        ./target/debug/tokens-client generate_vault_address -e dev -s <keypair.json>
         ```
         i.e
-        ./target/debug/tokens-client generate_vault_address -e dev -s devnet-test.json --min_lock_period 1
+        ./target/debug/tokens-client generate_vault_address -e dev -s devnet-test.json
 
     b. **Pay Rent:**
         ```bash
-        ./target/debug/tokens-client pay_rent -s <keypair.json> -e dev -a <token-amount> -l 2
+        ./target/debug/tokens-client pay_rent -s <keypair.json> -e dev
         ```
+        i.e
+        ./target/debug/tokens-client pay_rent -s devnet-test.json -e dev
+
      b. **Divide Rent:**
         ```bash
-        ./target/debug/tokens-client divide_rent -e dev -s devnet-test.json --token_balance 2 --json owner_list.json
+        ./target/debug/tokens-client divide_rent -e dev -s devnet-test.json --json owner_list.json
         ```
+        i.e
+        ./target/debug/tokens-client divide_rent -e dev -s devnet-test.json --json owner_list.json
 
 **Note:** Replace placeholders such as `<token>`, `<keypair.json>`, `<token-amount>`, etc., with actual values.
 
