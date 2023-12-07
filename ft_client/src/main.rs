@@ -21,10 +21,7 @@ use std::fs;
 
 #[derive(Clone, Debug, PartialEq, BorshDeserialize, BorshSerialize, BorshSchema)]
 enum StakeInstruction{
-    GenerateVault{
-        #[allow(dead_code)]
-        min_lock_period:u64,
-    },
+    GenerateVault,
     PayRent,
     DivideRent{
         #[allow(dead_code)]
@@ -45,11 +42,6 @@ fn main() {
                 .short("e")
                 .long("env")
                 .required(false)
-                .takes_value(true)
-            )
-            .arg(Arg::with_name("min_lock_period")
-                .long("min_lock_period")
-                .required(true)
                 .takes_value(true)
             )
         )
@@ -213,13 +205,9 @@ fn main() {
 
         let (vault_pda, _) = Pubkey::find_program_address(&["vault".as_bytes()], &program_id);
 
-        let min_lock_period = matches.value_of("min_lock_period").unwrap().parse::<u64>().unwrap();
-
         let instarctions = vec![Instruction::new_with_borsh(
             program_id,
-            &StakeInstruction::GenerateVault{
-                min_lock_period,
-            },
+            &StakeInstruction::GenerateVault,
             vec![
                 AccountMeta::new(wallet_pubkey, true),
                 AccountMeta::new(system_program::id(), false),
